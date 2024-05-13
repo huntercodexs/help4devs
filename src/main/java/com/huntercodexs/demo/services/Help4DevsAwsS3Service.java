@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.UUID;
 
 @Slf4j
@@ -66,7 +67,7 @@ public class Help4DevsAwsS3Service {
         try {
 
             InputStream inputStream = resource.getInputStream();
-            return new String(IOUtils.toByteArray(inputStream), StandardCharsets.UTF_8);
+            return new String(Base64.getEncoder().encode(IOUtils.toByteArray(inputStream)), StandardCharsets.UTF_8);
 
         } catch (Exception e) {
             return null;
